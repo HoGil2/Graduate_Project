@@ -1,4 +1,4 @@
 # Graduate_Project(JunYoung)
-*Documents - Documents to be Submitted
+* Documents - Documents to be Submitted
 
-*MyBilliards - Unity Project file
+* MyBilliards - Unity Project file
