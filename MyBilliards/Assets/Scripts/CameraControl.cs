@@ -7,6 +7,7 @@ public class CameraControl : MonoBehaviour
     public float rotateSpeed = 10.0f;
     public float zoomSpeed = 10.0f;
 
+    private float LookX, LookY;
     private Camera mainCamera;
     private GameObject Player;
 
@@ -37,6 +38,7 @@ public class CameraControl : MonoBehaviour
 
     private void Rotate() // 마우스 우측 버튼
     {
+        /*
         if (Input.GetMouseButton(1))
         {
             Vector3 rot = transform.rotation.eulerAngles; // 현재 카메라의 각도를 Vector3로 반환
@@ -46,5 +48,13 @@ public class CameraControl : MonoBehaviour
             q.z = 0;
             transform.rotation = Quaternion.Slerp(transform.rotation, q, 2f); // 자연스럽게 회전
         }
+        */
+        var x = Input.GetAxis("Mouse X");
+        var y = Input.GetAxis("Mouse Y");
+        LookX += x * 3f;
+        LookY += y * 3f;
+        
+        mainCamera.transform.localRotation = Quaternion.Euler(-Mathf.Clamp(LookY, -180, 180), // LookY값을 min과 max로 제한
+                                                   LookX, 0f);
     }
 }
