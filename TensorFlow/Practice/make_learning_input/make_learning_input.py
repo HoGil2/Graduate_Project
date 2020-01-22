@@ -57,7 +57,9 @@ def show_transform_windows():
 def show_circle_detection():
     image_gray = cv2.cvtColor(base_image, cv2.COLOR_BGR2GRAY)
 
-    circles = cv2.HoughCircles(image_gray, cv2.HOUGH_GRADIENT, dp=1, minDist=20,
+    image_gaussian = cv2.GaussianBlur(image_gray, (3, 3), 0)
+
+    circles = cv2.HoughCircles(image_gaussian, cv2.HOUGH_GRADIENT, dp=1, minDist=20,
                                param1=50, param2=35, minRadius=0, maxRadius=0)
     circles = np.uint16(np.around(circles))
 
@@ -66,12 +68,12 @@ def show_circle_detection():
         radius = c[2]
 
         # 바깥원
-        cv2.circle(image_gray, center, radius, (0, 255, 0), 2)
+        cv2.circle(image_gaussian, center, radius, (0, 255, 0), 2)
 
         # 중심원
-        cv2.circle(image_gray, center, 2, (0, 0, 255), 3)
+        cv2.circle(image_gaussian, center, 2, (0, 0, 255), 3)
 
-    cv2.imshow("Detection", image_gray)
+    cv2.imshow("Detection", image_gaussian)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
