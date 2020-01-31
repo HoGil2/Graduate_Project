@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 #base_image = cv2.imread("./img/1_1.jpg")
-base_image = cv2.imread("./Edu_Img/inside_angle_shot/2.jpg")
+base_image = cv2.imread("./Edu_Img/inside_angle_shot/1.jpg")
 
 def nothing(x):
     pass
@@ -184,8 +184,48 @@ def image_preprocessing():
     # blocksize: block * block size에 각각 다른 문턱값이 적용된다.
     # C: 보정 상수로서 adaptive에 계산된 값에서 양수면 빼주고 음수면 더해준다.
     # 출처: https://hoony-gunputer.tistory.com/99?category=753147 [후니의 컴퓨터]
-    adaptive_thresh2 = cv2.adaptiveThreshold(img_bilateral, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 11, 2)
-    cv2.imshow("Contours3", adaptive_thresh2)
+    adaptive_thresh2 = cv2.adaptiveThreshold(img_bilateral, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
+    cv2.imshow("adaptive_thresh2", adaptive_thresh2)
+
+    circles = cv2.HoughCircles(adaptive_thresh2, cv2.HOUGH_GRADIENT, dp=1, minDist=30,
+                               param1=50, param2=20, minRadius=0, maxRadius=30)
+    if circles is not None:
+        circles = np.uint16(np.around(circles))
+
+        for c in circles[0, :]:
+            center = (c[0], c[1])
+            radius = c[2]
+
+            # 바깥원
+            cv2.circle(base_image, center, radius, (0, 255, 0), 2)
+
+            # 중심원
+            cv2.circle(base_image, center, 2, (0, 0, 255), 3)
+
+    cv2.imshow("Detection", base_image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+    cv2.namedWindow("Canny")
+    cv2.createTrackbar('low threshold', 'Canny', 0, 1000, nothing)
+    cv2.createTrackbar('high threshold', 'Canny', 0, 1000, nothing)
+
+    cv2.setTrackbarPos('low threshold', 'Canny', 50)
+    cv2.setTrackbarPos('high threshold', 'Canny', 150)
+
+    while True:
+        low = cv2.getTrackbarPos('low threshold', 'Canny')
+        high = cv2.getTrackbarPos('high threshold', 'Canny')
+
+        img_canny = cv2.Canny(img_bilateral, low, high)
+        cv2.imshow("Canny", img_canny)
+
+        if cv2.waitKey(1)&0xFF == 27:
+            break
+    #img_canny = cv2.Canny(img_bilateral, 30, 150)
+    #cv2.imshow("Canny", img_canny)
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
 
     kernel = np.ones((11, 11), np.uint8)
     closing3 = cv2.morphologyEx(adaptive_thresh2, cv2.MORPH_CLOSE, kernel)
@@ -196,6 +236,8 @@ def image_preprocessing():
     image3 = cv2.drawContours(base_image, contours3, -1, (0, 255, 0), 3)
 
     cv2.imshow("image3", image3)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     #show_circle_detection()
