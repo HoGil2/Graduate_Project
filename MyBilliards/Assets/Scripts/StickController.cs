@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Mybilliards.Stolzenberg.Models;
 using UnityEngine;
 
 public class StickController : MonoBehaviour
@@ -9,6 +10,10 @@ public class StickController : MonoBehaviour
     public Transform target;
     private Vector3 CurrentPosition;
     private Vector3 MovePosition;
+    public bool ballStop;
+
+    [Header("BallModel")]
+    [SerializeField] public BallModel ballModel;
 
 
     public float sensitivityX = 0.0001F;
@@ -32,8 +37,12 @@ public class StickController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if(!ballModel.IsMoving)
+            que.transform.position = new Vector3(target.transform.position.x + 0.1f, target.transform.position.y + 0.1f, target.transform.position.z);
 
-        if(Input.GetKey(KeyCode.A)) // x축 회전
+
+        if (Input.GetKey(KeyCode.A)) // x축 회전
             transform.RotateAround(target.transform.position,Vector3.left , sensitivityX);
 
         else if (Input.GetKey(KeyCode.W)) // y축 회전
@@ -53,8 +62,8 @@ public class StickController : MonoBehaviour
                 MovePosition = CurrentPosition - Input.mousePosition;
                 if (Mathf.Abs(MovePosition.x) > 500 || Mathf.Abs(MovePosition.y) > 500)
                     return;
-                Debug.Log("CurrentPosition: " + CurrentPosition + ", Input.mousePosition: " + Input.mousePosition);
-                Debug.Log(MovePosition);
+                //Debug.Log("CurrentPosition: " + CurrentPosition + ", Input.mousePosition: " + Input.mousePosition);
+                //Debug.Log(MovePosition);
 
 
                 if (MovePosition.y < 0)
