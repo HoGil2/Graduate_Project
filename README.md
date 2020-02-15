@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:652c45c3727ecba93a30c39ac8abf307b0806b4e92933b7df13330986ac7c772
-size 270
+# Graduate_Project(Unity)
+* Documents - Documents to be Submitted
+
+* MyBilliards(mlagents) - Unity Project file( included ML-Agents )
+
+
+#version(Installed in Windows10)
+
+* Unity -  2019.2.17f1
+
+* ML-Agents - 0.6.0a
+
+* Python - 3.6.10 :: Anaconda
