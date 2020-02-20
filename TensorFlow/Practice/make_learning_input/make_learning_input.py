@@ -2,43 +2,40 @@ import numpy as np
 import cv2
 
 #base_image = cv2.imread("./img/1_1.jpg")
-base_image = cv2.imread("./Edu_Img/inside_angle_shot/1.jpg")
+base_image = cv2.imread("./Edu_Img/inside_angle_shot/10.jpg")
+white_lower = np.array([175, 240, 240], dtype=np.uint8)
+white_upper = np.array([255, 255, 255], dtype=np.uint8)
+yellow_lower = np.array([0, 200, 240], dtype=np.uint8)
+yellow_upper = np.array([20, 220, 255], dtype=np.uint8)
+red_lower = np.array([0, 0, 210], dtype=np.uint8)
+red_upper = np.array([50, 50, 255], dtype=np.uint8)
 
 def nothing(x):
     pass
 
-# HSV Threading을 통한 이미지 변조 시도
-def show_transform_windows():
-    cv2.namedWindow("Tracking")
-    # H,S,V의 최저, 최대 조절 트랙바 생성
-    cv2.createTrackbar("LH", "Tracking", 0, 255, nothing)
-    cv2.createTrackbar("LS", "Tracking", 0, 255, nothing)
-    cv2.createTrackbar("LV", "Tracking", 0, 255, nothing)
-    cv2.createTrackbar("UH", "Tracking", 255, 255, nothing)
-    cv2.createTrackbar("US", "Tracking", 255, 255, nothing)
-    cv2.createTrackbar("UV", "Tracking", 255, 255, nothing)
+# HSV thresholding 통한 이미지 변조 시도
+def hsv_thresholding():
+    #blurred = cv2.GaussianBlur(base_image, (11, 11), 0)
+    img_hsv = cv2.cvtColor(base_image, cv2.COLOR_BGR2HSV)
+    white_lower = np.array([0, 0, 0], dtype=np.uint8)
+    white_upper = np.array([255, 0, 255], dtype=np.uint8)
+    yellow_lower = (15, 204, 204)
+    yellow_upper = (20, 255, 255)
+    red_lower = (161, 155, 84)
+    red_upper = (179, 255, 255)
 
-    while True:
-        hsv = cv2.cvtColor(base_image, cv2.COLOR_BGR2HSV)
-        # 트랙바 값 가져옴
-        l_h = cv2.getTrackbarPos("LH", "Tracking")
-        l_s = cv2.getTrackbarPos("LS", "Tracking")
-        l_v = cv2.getTrackbarPos("LV", "Tracking")
-        u_h = cv2.getTrackbarPos("UH", "Tracking")
-        u_s = cv2.getTrackbarPos("US", "Tracking")
-        u_v = cv2.getTrackbarPos("UV", "Tracking")
 
-        l_b = np.array([l_h, l_s, l_v])
-        u_b = np.array([u_h, u_s, u_v])
-        # 필터링 된 마스크
-        mask = cv2.inRange(hsv, l_b, u_b)
+    white_mask = cv2.inRange(img_hsv, white_lower, white_upper)
+    #white_mask = cv2.erode(white_mask, None, iterations=2)
+    #white_mask = cv2.dilate(white_mask, None, iterations=2)
 
-        res = cv2.bitwise_and(base_image, base_image, mask=mask)
+    #red_mask = cv2.inRange(img_hsv, red_lower, red_upper)
 
-        cv2.imshow("res", res)
-        key = cv2.waitKey(1)
-        if key == 27:
-            break
+    #yellow_mask = cv2.inRange(img_hsv, yellow_lower, yellow_upper)
+
+    cv2.imshow("res", white_mask)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 # opencv의 HoughCircles를 이용한 원 디텍션
 # cv2.HoughCircles(image, method, dp, minDist[, circles[, param1[, param2[, minRadius[, maxRadius]]]]])
@@ -153,7 +150,6 @@ def image_adaptive_one_contours():
 # http://117.52.129.49/helloworld/8344782
 def image_preprocessing():
     img_gray = cv2.cvtColor(base_image, cv2.COLOR_BGR2GRAY)
-
     # bilateral filter
     # https://datascienceschool.net/view-notebook/c4121d311aa34e6faa84f62ef06e43b0/
     # 가우시안 필터링을 쓰면 이미지의 경계선도 흐려지기 때문에 양방향 필터링(Bilateral Filtering) 사용
@@ -165,10 +161,9 @@ def image_preprocessing():
     # d : 커널 크기
     # sigmaColor : 색공간 표준편차. 값이 크면 색이 많이 달라도 픽셀들이 서로 영향을 미친다.
     # sigmaSpace : 거리공간 표준편차. 값이 크면 멀리 떨어져있는 픽셀들이 서로 영향을 미친다.
-    img_bilateral = cv2.bilateralFilter(img_gray, 9, 75, 75)
+    img_bilateral = cv2.bilateralFilter(img_gray, 9, 75, 70)
     cv2.imshow("Bilateral", img_bilateral)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+
     #kernel = np.ones((5, 5), np.uint8)
     #img_gradient = cv2.morphologyEx(img_gaussian, cv2.MORPH_GRADIENT, kernel)
 
@@ -187,8 +182,11 @@ def image_preprocessing():
     adaptive_thresh2 = cv2.adaptiveThreshold(img_bilateral, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
     cv2.imshow("adaptive_thresh2", adaptive_thresh2)
 
-    circles = cv2.HoughCircles(adaptive_thresh2, cv2.HOUGH_GRADIENT, dp=1, minDist=30,
-                               param1=50, param2=20, minRadius=0, maxRadius=30)
+    img_copy = base_image.copy()
+    #circles = cv2.HoughCircles(adaptive_thresh2, cv2.HOUGH_GRADIENT, dp=1, minDist=5,
+    #                           param1=50, param2=20, minRadius=5, maxRadius=30)
+    circles = cv2.HoughCircles(adaptive_thresh2, cv2.HOUGH_GRADIENT, dp=1, minDist=5,
+                               param1=20, param2=20, minRadius=5, maxRadius=70)
     if circles is not None:
         circles = np.uint16(np.around(circles))
 
@@ -197,40 +195,63 @@ def image_preprocessing():
             radius = c[2]
 
             # 바깥원
-            cv2.circle(base_image, center, radius, (0, 255, 0), 2)
+            cv2.circle(img_copy, center, radius, (0, 255, 0), 2)
 
             # 중심원
-            cv2.circle(base_image, center, 2, (0, 0, 255), 3)
+            cv2.circle(img_copy, center, 2, (0, 0, 255), 3)
+    else:
+        print("No Circles!")
 
-    cv2.imshow("Detection", base_image)
+    cv2.imshow("Detection", img_copy)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    cv2.namedWindow("Canny")
-    cv2.createTrackbar('low threshold', 'Canny', 0, 1000, nothing)
-    cv2.createTrackbar('high threshold', 'Canny', 0, 1000, nothing)
-
-    cv2.setTrackbarPos('low threshold', 'Canny', 50)
-    cv2.setTrackbarPos('high threshold', 'Canny', 150)
-
-    while True:
-        low = cv2.getTrackbarPos('low threshold', 'Canny')
-        high = cv2.getTrackbarPos('high threshold', 'Canny')
-
-        img_canny = cv2.Canny(img_bilateral, low, high)
-        cv2.imshow("Canny", img_canny)
-
-        if cv2.waitKey(1)&0xFF == 27:
-            break
-    #img_canny = cv2.Canny(img_bilateral, 30, 150)
-    #cv2.imshow("Canny", img_canny)
-    #cv2.waitKey(0)
-    #cv2.destroyAllWindows()
-
-    kernel = np.ones((11, 11), np.uint8)
+    kernel = np.ones((3, 3), np.uint8)
     closing3 = cv2.morphologyEx(adaptive_thresh2, cv2.MORPH_CLOSE, kernel)
 
     cv2.imshow("closing3", closing3)
+
+    img_copy = base_image.copy()
+    #circles = cv2.HoughCircles(adaptive_thresh2, cv2.HOUGH_GRADIENT, dp=1, minDist=5,
+    #                           param1=50, param2=20, minRadius=5, maxRadius=30)
+    circles = cv2.HoughCircles(closing3, cv2.HOUGH_GRADIENT, dp=1, minDist=8,
+                               param1=50, param2=20, minRadius=4, maxRadius=30)
+
+    if circles is not None:
+        circles = np.uint16(np.around(circles))
+        # 원의 중심 픽셀값을 확인하기 위한 배열 생성
+        i = circles[0].__len__()
+        selected_colors = np.zeros((50, i*50, 3), dtype=np.uint8)
+
+        processed_img = np.zeros((32, 64, 3), np.uint8)
+        height, width, channel = base_image.shape
+
+        for c in circles[0, :]:
+            center = (c[0], c[1])
+            radius = c[2]
+            print(center[1], center[0])
+            print(round(center[1]*(32/height)), round(center[0]*(64/width)))
+            processed_height = round(center[1]*(32/height))
+            processed_width = round(center[0]*(64/width))
+            #processed_img[processed_height, processed_width]
+            cv2.circle(processed_img, (int(processed_width), int(processed_height)), 1, (0, 0, 255), -1)
+            print(img_copy[center[1], center[0]])
+            selected_colors[:, (i-1)*50:i*50] = img_copy[center[1], center[0]]
+            i -= 1
+            # 바깥원
+            cv2.circle(img_copy, center, radius, (0, 255, 0), 2)
+
+            # 중심원
+            cv2.circle(img_copy, center, 2, (0, 0, 255), 3)
+
+        cv2.imshow("Selected Colors", selected_colors)
+    else:
+        print("No Circles!")
+
+    cv2.imshow("Processed_Img", processed_img)
+    cv2.imshow("Detection", img_copy)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     image3, contours3, hierachy3 = cv2.findContours(closing3, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     image3 = cv2.drawContours(base_image, contours3, -1, (0, 255, 0), 3)
@@ -242,3 +263,4 @@ def image_preprocessing():
 if __name__ == "__main__":
     #show_circle_detection()
     image_preprocessing()
+    #hsv_thresholding()

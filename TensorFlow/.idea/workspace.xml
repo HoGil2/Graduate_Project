@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6dfc3950-20d1-404c-8503-57c0f57854a6" name="Default Changelist" comment="maxDist와 maxRadius의 값 조정으로 1.jpg 사진에서 공만 추출됨">
+    <list default="true" id="6dfc3950-20d1-404c-8503-57c0f57854a6" name="Default Changelist" comment="학습 이미지로의 변환 작업 중">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py" afterDir="false" />
     </list>
@@ -45,13 +46,35 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3572">
-              <caret line="188" column="4" selection-start-line="188" selection-start-column="4" selection-end-line="188" selection-end-column="4" />
+            <state relative-caret-position="209">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/color_picker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/1.jpg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/15.jpg">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -81,6 +104,7 @@
       <list>
         <option value="$PROJECT_DIR$/Practice/helloworld/helloworld.py" />
         <option value="$PROJECT_DIR$/Practice/import_pb_to_tensorboard/import_pb_to_tensorboard.py" />
+        <option value="$PROJECT_DIR$/Practice/make_learning_input/color_picker.py" />
         <option value="$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py" />
       </list>
     </option>
@@ -129,28 +153,6 @@
             <path>
               <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
               <item name="TensorFlow" type="462c0819:PsiDirectoryNode" />
-              <item name="Practice" type="462c0819:PsiDirectoryNode" />
-              <item name="make_learning_input" type="462c0819:PsiDirectoryNode" />
-              <item name="Edu_Img" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorFlow" type="462c0819:PsiDirectoryNode" />
-              <item name="Practice" type="462c0819:PsiDirectoryNode" />
-              <item name="make_learning_input" type="462c0819:PsiDirectoryNode" />
-              <item name="Edu_Img" type="462c0819:PsiDirectoryNode" />
-              <item name="inside_angle_shot" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorFlow" type="462c0819:PsiDirectoryNode" />
-              <item name="Practice" type="462c0819:PsiDirectoryNode" />
-              <item name="make_learning_input" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorFlow" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -162,7 +164,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Hackathon-master" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -183,7 +185,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.make_learning_input">
+  <component name="RunManager" selected="Python.color_picker">
+    <configuration name="color_picker" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TensorFlow" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Practice/make_learning_input" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Practice/make_learning_input/color_picker.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="helloworld" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TensorFlow" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -249,6 +272,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.color_picker" />
         <item itemvalue="Python.make_learning_input" />
         <item itemvalue="Python.import_pb_to_tensorboard" />
         <item itemvalue="Python.helloworld" />
@@ -280,7 +304,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580445408602</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="maxDist와 maxRadius의 값 조정으로 1.jpg 사진에서 공만 추출됨">
+      <created>1580448814209</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580448814209</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -296,13 +327,13 @@
     <frame x="953" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26068377" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26068377" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3274918" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3263965" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32968238" />
@@ -344,7 +375,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="HoughCircles 전 gaussian blur 추가" />
     <MESSAGE value="global, adaptive thresh 결과 확인&#10;PreProcessing 엣지를 뚜렷이 해주는 bilateral filter 적용" />
-    <option name="LAST_COMMIT_MESSAGE" value="global, adaptive thresh 결과 확인&#10;PreProcessing 엣지를 뚜렷이 해주는 bilateral filter 적용" />
+    <MESSAGE value="maxDist와 maxRadius의 값 조정으로 1.jpg 사진에서 공만 추출됨" />
+    <option name="LAST_COMMIT_MESSAGE" value="maxDist와 maxRadius의 값 조정으로 1.jpg 사진에서 공만 추출됨" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/img/2.PNG">
@@ -376,10 +408,29 @@
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/img/1_1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../Hackathon-master/main.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/15.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/1.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/color_picker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3572">
-          <caret line="188" column="4" selection-start-line="188" selection-start-column="4" selection-end-line="188" selection-end-column="4" />
+        <state relative-caret-position="209">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
