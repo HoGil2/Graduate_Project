@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6dfc3950-20d1-404c-8503-57c0f57854a6" name="Default Changelist" comment="학습 이미지로의 변환 작업 중">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6dfc3950-20d1-404c-8503-57c0f57854a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py" afterDir="false" />
     </list>
@@ -14,40 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Practice/helloworld/helloworld.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/img/1.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Practice/import_pb_to_tensorboard/import_pb_to_tensorboard.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1292">
-              <caret line="81" selection-start-line="81" selection-end-line="81" />
-              <folding>
-                <element signature="e#699#737#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="465">
+              <caret line="271" selection-start-line="271" selection-end-line="271" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -56,30 +26,39 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/color_picker.py">
+        <entry file="file://$USER_HOME$/Downloads/make_own_data_set_like_mnist-master/make_dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+            <state relative-caret-position="351">
+              <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#0#21#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/1.jpg">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/Practice/import_pb_to_tensorboard/import_pb_to_tensorboard.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="62" column="25" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="25" />
+              <folding>
+                <element signature="e#699#737#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/15.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/img/1_1.jpg">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/color_picker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="23" column="75" selection-start-line="23" selection-start-column="75" selection-end-line="23" selection-end-column="75" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -94,6 +73,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>model</find>
+      <find>True</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -105,13 +85,14 @@
         <option value="$PROJECT_DIR$/Practice/helloworld/helloworld.py" />
         <option value="$PROJECT_DIR$/Practice/import_pb_to_tensorboard/import_pb_to_tensorboard.py" />
         <option value="$PROJECT_DIR$/Practice/make_learning_input/color_picker.py" />
+        <option value="$USER_HOME$/Downloads/make_own_data_set_like_mnist-master/make_dataset.py" />
         <option value="$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
+    <option name="x" value="637" />
+    <option name="width" value="1290" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -126,6 +107,11 @@
             <path>
               <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
               <item name="TensorFlow" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TensorFlow" type="462c0819:PsiDirectoryNode" />
+              <item name="Edu_Img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
@@ -148,7 +134,29 @@
               <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
               <item name="TensorFlow" type="462c0819:PsiDirectoryNode" />
               <item name="Practice" type="462c0819:PsiDirectoryNode" />
+              <item name="import_pb_to_tensorboard" type="462c0819:PsiDirectoryNode" />
+              <item name="path" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TensorFlow" type="462c0819:PsiDirectoryNode" />
+              <item name="Practice" type="462c0819:PsiDirectoryNode" />
               <item name="make_learning_input" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TensorFlow" type="462c0819:PsiDirectoryNode" />
+              <item name="Practice" type="462c0819:PsiDirectoryNode" />
+              <item name="make_learning_input" type="462c0819:PsiDirectoryNode" />
+              <item name="Edu_Img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TensorFlow" type="462c0819:PsiDirectoryNode" />
+              <item name="Practice" type="462c0819:PsiDirectoryNode" />
+              <item name="make_learning_input" type="462c0819:PsiDirectoryNode" />
+              <item name="Edu_Img" type="462c0819:PsiDirectoryNode" />
+              <item name="unprocessing" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TensorFlow" type="b2602c69:ProjectViewProjectNode" />
@@ -185,7 +193,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.color_picker">
+  <component name="RunManager" selected="Python.import_pb_to_tensorboard">
     <configuration name="color_picker" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TensorFlow" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -272,9 +280,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.color_picker" />
-        <item itemvalue="Python.make_learning_input" />
         <item itemvalue="Python.import_pb_to_tensorboard" />
+        <item itemvalue="Python.make_learning_input" />
+        <item itemvalue="Python.color_picker" />
         <item itemvalue="Python.helloworld" />
       </list>
     </recent_temporary>
@@ -311,7 +319,21 @@
       <option name="project" value="LOCAL" />
       <updated>1580448814209</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="학습 이미지로의 변환 작업 중&#10;각 컬러의 상하한 값 확인">
+      <created>1582184884052</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582184884053</updated>
+    </task>
+    <task id="LOCAL-00005" summary="타구의 색이 다르게 학습이미지 생성&#10;파일 경로에 있는 모든 이미지 가져오는 방법 확인">
+      <created>1582869083201</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1582869083201</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -324,21 +346,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="637" y="0" width="1290" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26068377" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19488817" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3263965" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25301206" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39868566" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32968238" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32968238" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32932165" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32858709" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -371,12 +393,28 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="HoughCircles 전 gaussian blur 추가" />
     <MESSAGE value="global, adaptive thresh 결과 확인&#10;PreProcessing 엣지를 뚜렷이 해주는 bilateral filter 적용" />
     <MESSAGE value="maxDist와 maxRadius의 값 조정으로 1.jpg 사진에서 공만 추출됨" />
-    <option name="LAST_COMMIT_MESSAGE" value="maxDist와 maxRadius의 값 조정으로 1.jpg 사진에서 공만 추출됨" />
+    <MESSAGE value="학습 이미지로의 변환 작업 중&#10;각 컬러의 상하한 값 확인" />
+    <MESSAGE value="타구의 색이 다르게 학습이미지 생성&#10;파일 경로에 있는 모든 이미지 가져오는 방법 확인" />
+    <option name="LAST_COMMIT_MESSAGE" value="타구의 색이 다르게 학습이미지 생성&#10;파일 경로에 있는 모든 이미지 가져오는 방법 확인" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/img/2.PNG">
@@ -395,42 +433,82 @@
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/img/1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Practice/import_pb_to_tensorboard/import_pb_to_tensorboard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
-          <folding>
-            <element signature="e#699#737#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/img/1_1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../Hackathon-master/main.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/15.jpg">
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/10.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/11.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/12.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/13.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/14.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/15.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/8.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/6.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/4.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/3.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/Edu_Img/inside_angle_shot/2.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/color_picker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+        <state relative-caret-position="152">
+          <caret line="23" column="75" selection-start-line="23" selection-start-column="75" selection-end-line="23" selection-end-column="75" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/import_pb_to_tensorboard/import_pb_to_tensorboard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="62" column="25" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="25" />
+          <folding>
+            <element signature="e#699#737#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/make_own_data_set_like_mnist-master/make_dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="465">
+          <caret line="271" selection-start-line="271" selection-end-line="271" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

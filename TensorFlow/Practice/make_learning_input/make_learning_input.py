@@ -2,16 +2,21 @@ import numpy as np
 import cv2
 import glob
 
+DEBUG = False
+
 file_path = './Edu_Img/inside_angle_shot'
 base_images = glob.glob(file_path + '/*.jpg')
 
-base_image = cv2.imread("./Edu_Img/inside_angle_shot/2.jpg")
-white_ball_stroked = True
+#base_image = cv2.imread("./Edu_Img/unprocessing/1_inside_angle_shot/y/13.jpg")
+base_image = cv2.imread("./Edu_Img/unprocessing/1_inside_angle_shot/4.jpg")
 
-white_lower = np.array([175, 240, 240], dtype=np.uint8)
+white_ball_stroked = False
+
+white_lower = np.array([160, 220, 220], dtype=np.uint8)
 white_upper = np.array([255, 255, 255], dtype=np.uint8)
 yellow_lower = np.array([0, 170, 240], dtype=np.uint8)
-yellow_upper = np.array([24, 220, 255], dtype=np.uint8)
+yellow_upper = np.array([40, 230, 255], dtype=np.uint8)
+
 red_lower = np.array([0, 0, 210], dtype=np.uint8)
 red_upper = np.array([50, 50, 255], dtype=np.uint8)
 
@@ -155,20 +160,11 @@ def image_adaptive_one_contours():
 # http://117.52.129.49/helloworld/8344782
 def image_preprocessing():
     img_gray = cv2.cvtColor(base_image, cv2.COLOR_BGR2GRAY)
-    # bilateral filter
-    # https://datascienceschool.net/view-notebook/c4121d311aa34e6faa84f62ef06e43b0/
-    # 가우시안 필터링을 쓰면 이미지의 경계선도 흐려지기 때문에 양방향 필터링(Bilateral Filtering) 사용
-    # 양방향 필터링은 두 픽셀과의 거리 뿐 아니라 두 픽셀의 명암값의 차이도 커널에 넣어서 가중치로 곱한다.
-    # 따라서 픽셀값의 차이가 너무 가중치가 0에 가까운 값이 되어 합쳐지지 않으므로 영역과
-    # 영역사이의 경계선이 잘 보존된다.
-    # bilateralFilter(src, d, sigmaColor, sigmaSpace)
-    # src : 원본 이미지
-    # d : 커널 크기
-    # sigmaColor : 색공간 표준편차. 값이 크면 색이 많이 달라도 픽셀들이 서로 영향을 미친다.
-    # sigmaSpace : 거리공간 표준편차. 값이 크면 멀리 떨어져있는 픽셀들이 서로 영향을 미친다.
-    img_bilateral = cv2.bilateralFilter(img_gray, 7, 70, 70)
-    cv2.imshow("Bilateral", img_bilateral)
 
+    kernel = np.ones((3, 3), np.uint8)
+    # 경계 탐색을 위한 MORPH_GRADIENT
+    img_gradient = cv2.morphologyEx(img_gray, cv2.MORPH_GRADIENT, kernel)
+    # 잡음 제거를 위한 AdaptiveThreshold
     # cv2.adaptiveThreshold(img, value, adaptivemethod, thresholdType, blocksize, C)
     # global Threshold는 문턱 값을 하나의 이미지 전체에 적용시키는 반면 adaptive Threshold는 이미지의 구역구역마다 threshold를 실행 시켜주는 것이다
     # img: grayscale 이미지
@@ -179,45 +175,43 @@ def image_preprocessing():
     # blocksize: block * block size에 각각 다른 문턱값이 적용된다.
     # C: 보정 상수로서 adaptive에 계산된 값에서 양수면 빼주고 음수면 더해준다.
     # 출처: https://hoony-gunputer.tistory.com/99?category=753147 [후니의 컴퓨터]
-    adaptive_thresh2 = cv2.adaptiveThreshold(img_bilateral, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
-    cv2.imshow("adaptive_thresh2", adaptive_thresh2)
+    adaptive_thresh2 = cv2.adaptiveThreshold(img_gradient, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
+
+    if DEBUG is True:
+        img_copy = base_image.copy()
+        circles = cv2.HoughCircles(img_gradient, cv2.HOUGH_GRADIENT, dp=1, minDist=5,
+                                  param1=50, param2=20, minRadius=5, maxRadius=20)
+        #circles = cv2.HoughCircles(adaptive_thresh2, cv2.HOUGH_GRADIENT, dp=1, minDist=7,
+        #                           param1=20, param2=20, minRadius=5, maxRadius=30)
+
+        if circles is not None:
+            circles = np.uint16(np.around(circles))
+
+            for c in circles[0, :]:
+                center = (c[0], c[1])
+                radius = c[2]
+
+                # 바깥원
+                cv2.circle(img_copy, center, radius, (0, 255, 0), 2)
+
+                # 중심원
+                cv2.circle(img_copy, center, 2, (0, 0, 255), 3)
+        else:
+            print("No Circles!")
+
+        cv2.imshow("gradient", img_gradient)
+        cv2.imshow("adaptive_thresh2", adaptive_thresh2)
+        cv2.imshow("Detection", img_copy)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
     img_copy = base_image.copy()
-    # circles = cv2.HoughCircles(adaptive_thresh2, cv2.HOUGH_GRADIENT, dp=1, minDist=5,
-    #                           param1=50, param2=20, minRadius=5, maxRadius=30)
-    circles = cv2.HoughCircles(adaptive_thresh2, cv2.HOUGH_GRADIENT, dp=1, minDist=5,
-                               param1=20, param2=20, minRadius=5, maxRadius=70)
-
-    """
-        if circles is not None:
-        circles = np.uint16(np.around(circles))
-
-        for c in circles[0, :]:
-            center = (c[0], c[1])
-            radius = c[2]
-
-            # 바깥원
-            cv2.circle(img_copy, center, radius, (0, 255, 0), 2)
-
-            # 중심원
-            cv2.circle(img_copy, center, 2, (0, 0, 255), 3)
-    else:
-        print("No Circles!")
-
-    cv2.imshow("Detection", img_copy)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    """
-
-    kernel = np.ones((3, 3), np.uint8)
+    kernel = np.ones((1, 1), np.uint8)
+    # 작은 틈을 메우고 경계를 강화하는 Closing
     closing3 = cv2.morphologyEx(adaptive_thresh2, cv2.MORPH_CLOSE, kernel)
-
-    cv2.imshow("closing3", closing3)
-
-    #circles = cv2.HoughCircles(adaptive_thresh2, cv2.HOUGH_GRADIENT, dp=1, minDist=5,
-    #                           param1=50, param2=20, minRadius=5, maxRadius=30)
-    circles = cv2.HoughCircles(closing3, cv2.HOUGH_GRADIENT, dp=1, minDist=8,
-                               param1=50, param2=20, minRadius=4, maxRadius=30)
+    # 원 탐색
+    circles = cv2.HoughCircles(closing3, cv2.HOUGH_GRADIENT, dp=1, minDist=5,
+                              param1=50, param2=20, minRadius=5, maxRadius=20)
 
     if circles is not None:
         circles = np.uint16(np.around(circles))
@@ -227,6 +221,13 @@ def image_preprocessing():
         # 학습 이미지 생성
         processed_img = np.zeros((32, 64, 3), np.uint8)
         height, width, channel = img_copy.shape
+
+        # 타구를 다른 색으로 그리기 위함
+        if white_ball_stroked == True:
+            masked_img = cv2.inRange(img_copy, white_lower, white_upper)
+        else:
+            masked_img = cv2.inRange(img_copy, yellow_lower, yellow_upper)
+
         # 찾은 원들의 중심점을 이용하여 학습이미지로의 변환
         for c in circles[0, :]:
             center = (c[0], c[1])
@@ -238,12 +239,6 @@ def image_preprocessing():
             processed_height = round(center[1] * (32 / height))
             processed_width = round(center[0] * (64 / width))
 
-            # 타구를 다른 색으로 그리기 위함
-            if white_ball_stroked == True:
-                masked_img = cv2.inRange(img_copy, white_lower, white_upper)
-            else:
-                masked_img = cv2.inRange(img_copy, yellow_lower, yellow_upper)
-            cv2.imshow("Masked_Img", masked_img)
             print(masked_img[center[1], center[0]])
             print(img_copy[center[1], center[0]])
 
@@ -265,21 +260,13 @@ def image_preprocessing():
     else:
         print("No Circles!")
 
+    if DEBUG is True:
+        cv2.imshow("closing3", closing3)
+        cv2.imshow("Masked_Img", masked_img)
     cv2.imshow("Processed_Img", processed_img)
     cv2.imshow("Detection", img_copy)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    """
-    image3, contours3, hierachy3 = cv2.findContours(closing3, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    image3 = cv2.drawContours(base_image, contours3, -1, (0, 255, 0), 3)
-
-    cv2.imshow("image3", image3)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    """
-
 if __name__ == "__main__":
-    #show_circle_detection()
     image_preprocessing()
-    #hsv_thresholding()
