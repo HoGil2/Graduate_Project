@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="271" selection-start-line="271" selection-end-line="271" />
+            <state relative-caret-position="76">
+              <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -333,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582869083201</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="전처리 방법 수정&#10;image_preprocessing()을 제외한 다른 방법 지우기 전 최종">
+      <created>1583309694500</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1583309694500</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -414,7 +421,8 @@
     <MESSAGE value="maxDist와 maxRadius의 값 조정으로 1.jpg 사진에서 공만 추출됨" />
     <MESSAGE value="학습 이미지로의 변환 작업 중&#10;각 컬러의 상하한 값 확인" />
     <MESSAGE value="타구의 색이 다르게 학습이미지 생성&#10;파일 경로에 있는 모든 이미지 가져오는 방법 확인" />
-    <option name="LAST_COMMIT_MESSAGE" value="타구의 색이 다르게 학습이미지 생성&#10;파일 경로에 있는 모든 이미지 가져오는 방법 확인" />
+    <MESSAGE value="전처리 방법 수정&#10;image_preprocessing()을 제외한 다른 방법 지우기 전 최종" />
+    <option name="LAST_COMMIT_MESSAGE" value="전처리 방법 수정&#10;image_preprocessing()을 제외한 다른 방법 지우기 전 최종" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/img/2.PNG">
@@ -507,8 +515,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Practice/make_learning_input/make_learning_input.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="271" selection-start-line="271" selection-end-line="271" />
+        <state relative-caret-position="76">
+          <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
