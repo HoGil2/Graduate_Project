@@ -2,20 +2,21 @@ import numpy as np
 import cv2
 import glob
 
-DEBUG = False
+DEBUG = True
 
 file_path = './Edu_Img/inside_angle_shot'
 base_images = glob.glob(file_path + '/*.jpg')
 
-#base_image = cv2.imread("./Edu_Img/unprocessing/1_inside_angle_shot/y/13.jpg")
-base_image = cv2.imread("./Edu_Img/unprocessing/1_inside_angle_shot/4.jpg")
+#base_image = cv2.imread("./Edu_Img/unprocessing/1_inside_angle_shot/w/3_345,2.jpg")
+base_image = cv2.imread("./Edu_Img/unprocessing/1_inside_angle_shot/y/9_240,2.jpg")
 
+#white_ball_stroked = True
 white_ball_stroked = False
 
-white_lower = np.array([160, 220, 220], dtype=np.uint8)
+white_lower = np.array([150, 210, 220], dtype=np.uint8)
 white_upper = np.array([255, 255, 255], dtype=np.uint8)
-yellow_lower = np.array([0, 170, 240], dtype=np.uint8)
-yellow_upper = np.array([40, 230, 255], dtype=np.uint8)
+yellow_lower = np.array([0, 160, 200], dtype=np.uint8)
+yellow_upper = np.array([55, 240, 255], dtype=np.uint8)
 
 red_lower = np.array([0, 0, 210], dtype=np.uint8)
 red_upper = np.array([50, 50, 255], dtype=np.uint8)
@@ -43,8 +44,8 @@ def image_preprocessing():
 
     if DEBUG is True:
         img_copy = base_image.copy()
-        circles = cv2.HoughCircles(img_gradient, cv2.HOUGH_GRADIENT, dp=1, minDist=5,
-                                  param1=50, param2=20, minRadius=5, maxRadius=20)
+        circles = cv2.HoughCircles(img_gradient, cv2.HOUGH_GRADIENT, dp=1, minDist=8,
+                              param1=50, param2=20, minRadius=6, maxRadius=15)
         #circles = cv2.HoughCircles(adaptive_thresh2, cv2.HOUGH_GRADIENT, dp=1, minDist=7,
         #                           param1=20, param2=20, minRadius=5, maxRadius=30)
 
@@ -74,8 +75,8 @@ def image_preprocessing():
     # 작은 틈을 메우고 경계를 강화하는 Closing
     closing3 = cv2.morphologyEx(adaptive_thresh2, cv2.MORPH_CLOSE, kernel)
     # 원 탐색
-    circles = cv2.HoughCircles(closing3, cv2.HOUGH_GRADIENT, dp=1, minDist=5,
-                              param1=50, param2=20, minRadius=5, maxRadius=20)
+    circles = cv2.HoughCircles(closing3, cv2.HOUGH_GRADIENT, dp=1, minDist=8,
+                              param1=50, param2=20, minRadius=6, maxRadius=15)
 
     if circles is not None:
         circles = np.uint16(np.around(circles))
@@ -120,14 +121,15 @@ def image_preprocessing():
             # 중심원
             cv2.circle(img_copy, center, 2, (0, 0, 255), 3)
 
-        cv2.imshow("Selected Colors", selected_colors)
+        if DEBUG is True:
+            cv2.imshow("closing3", closing3)
+            cv2.imshow("Masked_Img", masked_img)
+            cv2.imshow("Selected Colors", selected_colors)
+            cv2.imshow("Processed_Img", processed_img)
+
     else:
         print("No Circles!")
 
-    if DEBUG is True:
-        cv2.imshow("closing3", closing3)
-        cv2.imshow("Masked_Img", masked_img)
-    cv2.imshow("Processed_Img", processed_img)
     cv2.imshow("Detection", img_copy)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
