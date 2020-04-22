@@ -3,20 +3,20 @@ import cv2
 import glob
 
 DEBUG = True
-
-file_path = './Edu_Img/inside_angle_shot'
+ 
+file_path = './Edu_Img/inside_long_angle'
 base_images = glob.glob(file_path + '/*.jpg')
 
-#base_image = cv2.imread("./Edu_Img/unprocessing/1_inside_angle_shot/w/3_345,2.jpg")
-base_image = cv2.imread("./Edu_Img/unprocessing/1_inside_angle_shot/y/9_240,2.jpg")
+#base_image = cv2.imread("./Edu_Img/unprocessing/1_inside_angle_shot/w/12_250,3.jpg")
+base_image = cv2.imread("./Edu_Img/unprocessing/5_double_rail_shot/w/4_270,3.jpg")
 
-#white_ball_stroked = True
-white_ball_stroked = False
+white_ball_stroked = True
+#white_ball_stroked = False
 
 white_lower = np.array([150, 210, 220], dtype=np.uint8)
 white_upper = np.array([255, 255, 255], dtype=np.uint8)
 yellow_lower = np.array([0, 160, 200], dtype=np.uint8)
-yellow_upper = np.array([55, 240, 255], dtype=np.uint8)
+yellow_upper = np.array([55, 245, 255], dtype=np.uint8)
 
 red_lower = np.array([0, 0, 210], dtype=np.uint8)
 red_upper = np.array([50, 50, 255], dtype=np.uint8)
