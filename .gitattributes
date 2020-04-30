@@ -1,0 +1,2 @@
+MyBilliards/Library/ArtifactDB filter=lfs diff=lfs merge=lfs -text
+MyBilliards/Library/SourceAssetDB filter=lfs diff=lfs merge=lfs -text
