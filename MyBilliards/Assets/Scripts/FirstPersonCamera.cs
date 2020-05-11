@@ -28,7 +28,9 @@ public class FirstPersonCamera : MonoBehaviour
     private float velY = 0.0f;
     private float velZ = 0.0f;
     private Vector3 position = Vector3.zero;
-    
+
+    private float moveSpeed = 0.1f;
+
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("ball1").transform;
@@ -45,14 +47,16 @@ public class FirstPersonCamera : MonoBehaviour
 
     void MoveCtrl()
     {
+        //Vector3 heading = this.transform.position - target.position;
+
         //키보드 W,S,A,D Player 이동 함수
         //if (Input.GetKey(KeyCode.W))
         //{
-        //    this.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        //    this.transform.Translate(heading.normalized * moveSpeed * Time.deltaTime);
         //}
         //if (Input.GetKey(KeyCode.S))
         //{
-        //    this.transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+        //    this.transform.Translate(-heading.normalized * moveSpeed * Time.deltaTime);
         //}
         //if (Input.GetKey(KeyCode.A))
         //{
@@ -80,6 +84,7 @@ public class FirstPersonCamera : MonoBehaviour
     void HandlePlayerInput()
     {
         float deadZone = 0.01f;
+        Vector3 heading = this.transform.position - target.transform.position;
 
         if (Input.GetMouseButton(1))
         {

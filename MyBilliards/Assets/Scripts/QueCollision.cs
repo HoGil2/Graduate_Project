@@ -12,6 +12,7 @@ public class QueCollision : MonoBehaviour
     Rigidbody rb;
     float mass;
     Vector3 contactPos;
+    GameObject que;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class QueCollision : MonoBehaviour
         FORCECONSTTWO = 0.3f;
         rb = GameObject.FindGameObjectWithTag("ball1").GetComponent<Rigidbody>();
         mass = rb.mass;
+        que = GameObject.FindGameObjectWithTag("que");
     }
 
     // Update is called once per frame
@@ -36,7 +38,7 @@ public class QueCollision : MonoBehaviour
         {
             Debug.Log("Calculate Velocity and Rotation with TochTime: " 
                 + touchTime);
-            //CalculateVelRot();
+            CalculateVelRot();
             calTrigger = false;
         }
     }
@@ -83,7 +85,9 @@ public class QueCollision : MonoBehaviour
         float force = 1.0f;
         float impulse = force * touchTime;
         float power = FORCECONSTONE * force + FORCECONSTTWO * force * Mathf.Pow(touchTime, 2.0f);
-        float Xvelocity = power / mass;
+        //float Xvelocity = power / mass;
+        Vector3 heading = que.transform.position - this.transform.position;
+        this.transform.Translate(heading.normalized * power * Time.deltaTime);
         //float Yrotation = power * 중심으로부터 당점 거리 / impulse;
         //float Xrotation = power * 중심으로부터 당점 거리 / impulse;
     }

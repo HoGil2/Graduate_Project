@@ -55,18 +55,21 @@ public class StickController : MonoBehaviour
                 Debug.Log("CurrentPosition: " + CurrentPosition + ", Input.mousePosition: " + Input.mousePosition);
                 Debug.Log(MovePosition);
 
+                Vector3 heading = que.transform.position - target.position;
+                //var distance = heading.magnitude;
+                //Vector3 direction = heading / distance;
+                //Quaternion dir = Quaternion.Euler(heading / distance);
 
                 if (MovePosition.y < 0)
-                    que.transform.Translate(Vector3.back * 0.01f);
+                    que.transform.Translate( heading.normalized * Time.deltaTime * 1f);
                 else if(MovePosition.y > 0)
-                    que.transform.Translate(Vector3.forward * 0.01f);
+                    que.transform.Translate( -heading.normalized * Time.deltaTime * 1f);
             }
             CurrentPosition = Input.mousePosition;
-
-            
+           
         }
             
-
+        
         que.transform.LookAt(target);
         /*
         if (CurrentPosition != null)
