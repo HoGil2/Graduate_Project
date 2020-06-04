@@ -2,7 +2,8 @@
 using UnityEngine;
 using SocketIO;
 using System.Collections.Generic;
-
+using ScrollUI;
+using UnityEngine.UI;
 
 public class SendData : MonoBehaviour
 {
@@ -29,6 +30,17 @@ public class SendData : MonoBehaviour
     private float rot_y;
     private float rot_z;
 
+    private bool setting = false;
+
+    // int count = 0;
+    private float fDestroyTime = 2f;
+    private float fTickTime;
+
+    public Button button;
+    public RectTransform Canvas;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,23 +50,41 @@ public class SendData : MonoBehaviour
         ball2trans = ball2.transform;
         ball3trans = ball3.transform;
         quetrans = que.transform;
-        init();
+
+
+        socket.On("SetReplayBoard", ReplayBoard);
 
         
 
+        // 사용 변수 초기화
+        Init();
         
+
+
+
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        // 서버 통신하는데 시간 딜레이가 있음
+        fTickTime += Time.deltaTime;
+        if (fTickTime >= fDestroyTime)
+        {
+            // 리플레이 화면 요청
+            if (setting != true)
+                RequestReplayByUnity();
+        }
+        // 프레임 DB 전송
+        // SendFrameByUnity();
 
-        GetFrame();
+
     }
 
 
-    public void GetFrame()
+    public void SendFrameByUnity()
     {
         Dictionary<string, string> data = new Dictionary<string, string>();
         data.Add("ball1pos_x", ball1trans.position.x.ToString());
@@ -93,19 +123,57 @@ public class SendData : MonoBehaviour
 
         jdata = new JSONObject(data);
 
-        socket.Emit("SendDatabyUnity", jdata);
+        socket.Emit("SendFrameByUnity", jdata);
         
         
 
 
     }
 
-    public void init()
+    public void Init()
     {
      pos_x = 0f; pos_y = 0f; pos_z = 0f;
      rot_x = 0f;  rot_y = 0f; rot_z = 0f;
 
-}
+    }
+
+    // 리플레이 화면 요청
+    public void RequestReplayByUnity()
+    {
+        //SetReplayBoard 
+       
+        Debug.Log("리플레이 화면 요청");
+        socket.Emit("RequestReplayByUnity");
+        setting = true;
+    }
+
+    public void ReplayBoard(SocketIOEvent e)
+    {
+
+        InitForReplayBoard(e.data.list.Count, e.data.keys, e.data);
+
+    }
+
+    public void InitForReplayBoard(int len, List<string> keys, JSONObject values)
+    {
+        int yValue = 0;
+        for (int i = 0; i < len; i++)
+        {
+            //item 초기화
+            Button newItem = button;
+            newItem.GetComponent<RectTransform>().sizeDelta = new Vector2(Canvas.rect.width,30);
+
+            Text title = newItem.GetComponentInChildren<Text>();
+            title.text = keys[i] + "\t\t\t" + "저장날짜" + values[i].ToString();
+            
+
+            var index = Instantiate(newItem, new Vector3(0, yValue, 0), Quaternion.identity);
+            index.transform.SetParent(GameObject.Find("Content").transform);
+            yValue -= 200;
+        }
+
+    }
+
 
 
 

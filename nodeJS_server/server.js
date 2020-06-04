@@ -25,7 +25,7 @@ io.on('connection', function(socket){
 
 
     socket.on('SendDatabyUnity', function(data){
-        var sql = 'insert into frameTable(ball1pos_x, ball1pos_y, ball1pos_z,ball1rot_x, ball1rot_y, ball1rot_z,ball2pos_x, ball2pos_y, ball2pos_z,ball2rot_x, ball2rot_y, ball2rot_z,ball3pos_x, ball3pos_y, ball3pos_z,ball3rot_x, ball3rot_y, ball3rot_z,quepos_x, quepos_y, quepos_z,querot_x, querot_y, querot_z) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        var sql = 'insert into replay1(ball1pos_x, ball1pos_y, ball1pos_z,ball1rot_x, ball1rot_y, ball1rot_z,ball2pos_x, ball2pos_y, ball2pos_z,ball2rot_x, ball2rot_y, ball2rot_z,ball3pos_x, ball3pos_y, ball3pos_z,ball3rot_x, ball3rot_y, ball3rot_z,quepos_x, quepos_y, quepos_z,querot_x, querot_y, querot_z) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
         var params = [data.ball1pos_x,data.ball1pos_y,data.ball1pos_z,data.ball1rot_x,data.ball1rot_y,data.ball1rot_z,data.ball2pos_x,data.ball2pos_y,data.ball2pos_z,data.ball2rot_x,data.ball2rot_y,data.ball2rot_z,data.ball3pos_x,data.ball3pos_y,data.ball3pos_z,data.ball3rot_x,data.ball3rot_y,data.ball3rot_z,data.quepos_x,data.quepos_y,data.quepos_z,data.querot_x,data.querot_y,data.querot_z];
 
         connection.query(sql,params,function(err,rows,fields){
@@ -34,13 +34,41 @@ io.on('connection', function(socket){
             }else{
                 console.log(rows.insertid);
             }
-        
+
     });
 
     });
+
+   socket.on('RequestReplayByUnity', function(){
+           var msg = {};
+           /*
+           var msg = new Array();
+           msg[0] = "test";
+           msg[1]= "test2";
+           //wqJSON.stringify(msg);
+           JSONObject.CreateStringObject(msg);
+           socket.emit('SetReplayBoard',msg);
+           */
+        var sql = 'select * from replayTable';
+        connection.query(sql,function(err,rows, fields){
+                if(err){
+                        console.log(err);
+                }else{
+                        for(var i = 0; i < rows.length; i++){
+                                console.log(rows[i].title+" : "+rows[i].save_time);
+                                msg[rows[i].title] =[rows[i].save_time];
+
+                        }
+                        socket.emit('SetReplayBoard',msg);
+                }
+
+
+
+
+        });
+   });
+
 });
-
-
 
 
 
