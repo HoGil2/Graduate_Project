@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -123.505005, y: 40.002518}
-  m_SizeDelta: {x: 863, y: 30}
+  m_SizeDelta: {x: 225, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4306532052400131166
 CanvasRenderer:
@@ -194,4 +194,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "replay7\t\t\t\uC800\uC7A5\uB0A0\uC9DC[\"2020-05-27\"]"
+  m_Text: "replay1\t\t\t\uC800\uC7A5\uB0A0\uC9DC[\"2020-06-05 16:05:47\"]"

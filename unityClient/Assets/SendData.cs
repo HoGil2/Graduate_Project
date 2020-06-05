@@ -58,7 +58,9 @@ public class SendData : MonoBehaviour
 
         // 사용 변수 초기화
         Init();
+
         
+
 
 
 
@@ -76,6 +78,7 @@ public class SendData : MonoBehaviour
             // 리플레이 화면 요청
             if (setting != true)
                 RequestReplayByUnity();
+            CreateReplay();
         }
         // 프레임 DB 전송
         // SendFrameByUnity();
@@ -129,6 +132,17 @@ public class SendData : MonoBehaviour
 
 
     }
+    public void CreateReplay()
+    {
+        Dictionary<string, string> data = new Dictionary<string, string>();
+        data.Add("user_id", "junoung");
+
+        jdata = new JSONObject(data);
+        socket.Emit("CreateTable", jdata);
+
+
+    }
+
 
     public void Init()
     {

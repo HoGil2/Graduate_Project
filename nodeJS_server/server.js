@@ -3,8 +3,13 @@ var app = express();
 
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
+var moment = require('moment');
+require('moment-timezone');
+moment.tz.setDefault("Asia/Seoul");
 
+var date = moment().format('YYYY-MM-DD HH:mm:ss');
 
+console.log(date);
 
 app.set('port', process.env.PORT || 8080);
 
@@ -22,6 +27,32 @@ io.on('connection', function(socket){
     socket.on('beep', function(){
             socket.emit('boop');
     });
+
+     socket.on('CreateTable',function(data){
+             console.log("createtable..."+data.user_id);
+        var sql = 'SELECT replayTable.id FROM replayTable order by save_time desc limit 1;';
+        connection.query(sql,function(err,rows, fields){
+                if(err){
+
+                }else{
+                        if(rows[0]==undefined){
+                        //      console.log("row empty by CreateTable");
+                        var sql = 'insert into replayTable values(?,?,?,?)';
+                        var params = [1,"replay1",data.user_id,date];
+                        connection.query(sql,params,function(err,rows,fields){
+                                if(err){
+                                }else{
+                                 console.log("insert into replayTable: first rows");
+                                }
+                        });
+                        }else{
+                                console.log(++rows[0].id);
+                        }
+
+                }
+        });
+    });
+
 
 
     socket.on('SendDatabyUnity', function(data){
